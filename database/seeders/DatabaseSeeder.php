@@ -15,7 +15,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+
+        $writer= Role::create(['name' => 'writer']);
+        $canWriteAnArticle= Permission::create(['name' => 'access writer']);
+        $writer->givePermissionTo($canWriteAnArticle);
+
+
+        User::factory(10)->create()->each(function ($user) {
+
+             $user->assignRole('writer');
+        });
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
@@ -33,6 +42,9 @@ class DatabaseSeeder extends Seeder
         $admin->givePermissionTo($canAccessAdmin);
 
         $superAdmin->assignRole($admin);
+
+
+
 
     }
 }

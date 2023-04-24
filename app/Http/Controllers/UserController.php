@@ -9,32 +9,41 @@ use Spatie\Permission\Models\Permission;
 
 class UserController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function index()
     {
+        $users = User::all();
+        return view('users.index', compact('users'));
+    }
+
+    public function create()
+    {
         $roles = Role::all();
-        $permissions = Permission::all();
-        return view('users.index', compact('roles', 'permissions'));
+        return view('users.create', compact('roles'));
     }
 
-    public function assignRole(Request $request)
+    public function store(Request $request)
     {
-        $user = User::find($request->input('user_id'));
-        $user->assignRole($request->input('role'));
-        return redirect()->back()->with('success', 'Role assigned successfully');
-    }
+        $request->validate([
+            'name' => 'required|unique:users,name',
+            'email' => 'required|unique:users,email',
+            'password' => 'required',
+            'roles' => 'required',
+        ]);
 
-    public function assignPermission(Request $request)
-    {
-        $user = User::find($request->input('user_id'));
-        $user->givePermissionTo($request->input('permission'));
-        return redirect()->back()->with('success', 'Permission assigned successfully');
-    }
+        $user = User::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'), 
+            'password' => bcrypt($request->input('password')),
+        ]);
 
+        $user->assignRole($request->input('roles'));
+        return redirect()->route('users.index')->with('success', 'User created successfully');
+    }
     
-
+    public function destroy($id)
+    {
+        $user = User::find($id);
+        $user->delete();
+        return redirect()->back()->with('success', 'User deleted successfully');
+    }
 }

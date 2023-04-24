@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,13 +20,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
-
 Route::get('/home', function () {
     return view('home');
 })->middleware(['auth'])->name('home');
 
-//creer route avec le controller de post 
-
 Route::resource('posts', PostController::class)->middleware(['can:access admin']);
 
+Route::resource('users', UserController::class)->middleware(['can:access admin']);

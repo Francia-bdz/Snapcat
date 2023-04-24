@@ -5,4 +5,8 @@
             @csrf
             <button>Déconnexion</button>
         </form>
+        <div class="">
+           <a href="{{ route('users.index') }}"> Voir les utilisateurs </a>
+  
+        </div>
     @endsection
