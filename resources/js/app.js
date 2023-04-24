@@ -1,3 +1,2 @@
 import './bootstrap';
 
-alert('Bonjour');
