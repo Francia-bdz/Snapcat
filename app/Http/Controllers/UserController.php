@@ -11,7 +11,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::all();
+        $users = User::with('roles')->get();
         return view('users.index', compact('users'));
     }
 
@@ -19,6 +19,23 @@ class UserController extends Controller
     {
         $roles = Role::all();
         return view('users.create', compact('roles'));
+    }
+
+    public function edit($id)
+    {
+        $user = User::find($id);
+        $roles = Role::all();
+        return view('users.edit', compact('user', 'roles'));
+    }
+
+    public function update(Request $request,User $user)
+    {
+        $request->validate(['name' => 'required']);
+
+        $user->update(['name' => $request->input('name')]);
+
+        // $user->syncRoles($request->input('roles'));
+        return redirect()->route('users.index')->with('success', 'User updated successfully');
     }
 
     public function store(Request $request)

@@ -27,14 +27,16 @@
                     <a href="{{ route('users.show', $user) }}" title="Lire l'article" >{{ $user->name }}</a>
                 </td>
                 <td class="border border-slate-300">
-                    <a href="{{ route('users.show', $user) }}" title="Lire l'article" >{{ $user->role }}</a>
-
-                    {{ dd($user) }}
-
+                    @foreach ($user->roles as $role)
+                        {{ $role->name }}
+                    @endforeach
+                    {{-- <a href="{{ route('users.show', $user) }}" title="Lire l'article" >{{ $user->roles }}</a> --}}
                 </td>
 
+                @can('access admin')
+
                 <td class="border border-slate-300">
-                    <a href="{{ route('users.edit', $user) }}" title="Modifier l'article" >Modifier</a>
+                    <a href="{{ route('users.edit', $user) }}" title="Modifier le nom de l'utilisateur" >Modifier</a>
                 </td>
                 <td class="border border-slate-300">
                     <form method="POST" action="{{ route('users.destroy', $user) }}" >
@@ -45,8 +47,11 @@
                         <input type="submit" value="x Supprimer" >
                     </form>
                 </td>
+                @endcan
             </tr>
             @endforeach
         </tbody>
     </table>
+
+    <a href="{{ route('home') }}" class="grey"> Retour vers la home </a>
 @endsection
