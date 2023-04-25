@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
@@ -22,9 +23,10 @@ class DatabaseSeeder extends Seeder
 
 
         User::factory(10)->create()->each(function ($user) {
-
              $user->assignRole('writer');
         });
+
+        Post::factory(10)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
@@ -46,6 +48,8 @@ class DatabaseSeeder extends Seeder
         $admin= Role::create(['name' => 'admin']);
         $canAccessAdmin= Permission::create(['name' => 'access admin']);
         $admin->givePermissionTo($canAccessAdmin);
+        $superAdmin->givePermissionTo($canAccessAdmin);
+
 
 
     }

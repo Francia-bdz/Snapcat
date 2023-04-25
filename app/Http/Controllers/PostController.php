@@ -17,17 +17,14 @@ class PostController extends Controller
     }
 
     public function create()
-    {
-        $role = Role::create(['name' => 'writer']);
-        $permission = Permission::create(['name' => 'edit articles']);
-        
+    {        
         return view('posts.create');
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
+            'title' => 'required',
             'content' => 'required',
         ]);
 
@@ -50,7 +47,7 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         $request->validate([
-            'name' => 'required',
+            'title' => 'required',
             'content' => 'required',
         ]);
 

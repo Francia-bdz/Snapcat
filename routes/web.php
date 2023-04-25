@@ -24,6 +24,6 @@ Route::get('/home', function () {
     return view('home');
 })->middleware(['auth'])->name('home');
 
-Route::resource('posts', PostController::class)->middleware(['can:access superAdmin']);
+Route::resource('posts', PostController::class);
 
-Route::resource('users', UserController::class)->middleware(['can:access superAdmin']);
+Route::resource('users', UserController::class)->middleware(['can:access admin']);

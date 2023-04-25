@@ -7,10 +7,8 @@
 
 	<form method="POST" action="{{ route('users.update', $user) }}" enctype="multipart/form-data" >
 
-		<!-- <input type="hidden" name="_method" value="PUT"> -->
 		@method('PUT')
 
-		<!-- Le token CSRF -->
 		@csrf
 		
 		<p>
@@ -25,14 +23,10 @@
 
 			<select name="roles" class="border">
 				@foreach ($roles as $role)
-					<option value="{{ $role->id }}" {{ isset($user) && $user->roles->contains($role) ? 'selected' : '' }}>{{ $role->name }}</option>
+					<option value="{{ $role->id }}" {{ isset($user) && $user->roles->contains($role) ? 'selected' : '' }}{{ $user->roles == 'superAdmin' ? 'disabled' : '' }}>{{ $role->name }}</option>
 				@endforeach
 			</select>
 		</p>
-
-
-		
-
 
 		<input type="submit" name="valider" value="Valider" class=" transition ease-in-out rounded bg-slate-400 py-2 px-3 mt-2 hover:bg-slate-300">
 

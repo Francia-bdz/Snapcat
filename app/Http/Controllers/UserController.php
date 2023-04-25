@@ -24,7 +24,8 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
-        $roles = Role::all();
+        $excludedRoleName = 'superAdmin';
+        $roles = Role::where('name', '!=', $excludedRoleName)->get(); 
         return view('users.edit', compact('user', 'roles'));
     }
 
@@ -35,7 +36,7 @@ class UserController extends Controller
         $user->update(['name' => $request->input('name')]);
 
         $user->syncRoles($request->input('roles'));
-        
+
         return redirect()->route('users.index')->with('success', 'User updated successfully');
     }
 
