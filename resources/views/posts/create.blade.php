@@ -21,7 +21,6 @@
 		</p>
 
 		
-	
 		<input type="submit" name="valider" value="Valider" class=" transition ease-in-out rounded bg-slate-400 py-2 px-3 mt-2 hover:bg-slate-300">
 
 	</form>

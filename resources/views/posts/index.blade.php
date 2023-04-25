@@ -18,6 +18,7 @@
 			<a href="{{ route('posts.create') }}" title="Créer un article" >Créer un nouveau post</a>
 		</p>
 
+		<h2 class="my-2 font-bold">Vos articles</h2>
 		<!-- Le tableau pour lister les articles/posts -->
 		<table class="border-separate border border-slate-400 mt-3" >
 			<thead>
@@ -29,7 +30,7 @@
 			</thead>
 			<tbody>
 				<!-- On parcourt la collection de Post -->
-				@foreach ($posts as $post)
+				@foreach ($myPosts as $post)
 				<tr>
 					<td class="border border-slate-300">
 						<!-- Lien pour afficher un Post : "posts.show" -->
@@ -53,6 +54,34 @@
 				@endforeach
 			</tbody>
 		</table>
+
+
+		<h2 class="my-2 font-bold">Les articles disponibles sur le site</h2>
+
+		<table class="border-separate border border-slate-400 mt-3" >
+			<thead>
+				<tr>
+					<th class="border border-slate-300">Titre</th>
+					<th class="border border-slate-300">Par</th>
+				</tr>
+			</thead>
+			<tbody>
+				<!-- On parcourt la collection de Post -->
+				@foreach ($posts as $post)
+				<tr>
+					<td class="border border-slate-300">
+						<!-- Lien pour afficher un Post : "posts.show" -->
+						<a href="{{ route('posts.show', $post) }}" title="Lire l'article" >{{ $post->title }}</a>
+					</td>
+					<td class="border border-slate-300">
+						<!-- Lien pour afficher un Post : "posts.show" -->
+						<a href="{{ route('posts.show', $post) }}" title="Lire l'article" >{{ $post->user->name }}</a>
+					</td>
+				</tr>
+				@endforeach
+			</tbody>
+		</table>
+		<a href="{{ route('home') }}" class="text-sky-500"> Retour vers la home </a>
 
 </div>
 		

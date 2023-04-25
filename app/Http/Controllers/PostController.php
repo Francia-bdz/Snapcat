@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
@@ -10,11 +11,17 @@ use Spatie\Permission\Models\Permission;
 
 class PostController extends Controller
 {
-    public function index()
+    public function index(User $user)
     {
-        $posts = Post::latest()->paginate(5);
 
-        return view('posts.index', compact('posts'));
+        $excludedUserId = auth()->user()->id;
+        $posts = Post::where('user_id', '!=', $excludedUserId)->get(); 
+
+        //$posts= Post::all();
+        
+        $myPosts = Post::where('user_id', Auth::user()->id)->get();
+        
+        return view('posts.index', compact('myPosts','posts'));
     }
 
     public function create()
@@ -29,9 +36,7 @@ class PostController extends Controller
             'title' => 'required',
             'content' => 'required',
         ]);
-        $post->user_id = Auth::user()->id;
 
-        
         Post::create($request->all());
 
         return redirect()->route('posts.index')
@@ -41,8 +46,6 @@ class PostController extends Controller
     public function show(Post $post)
 
     {
-
-        
         return view('posts.show', compact('post'));
     }
 

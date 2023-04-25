@@ -8,7 +8,8 @@
 		
 		<div>{{ $post->content }}</div>
 
-		<div>{{ $post->user_id }}</div>
+
+		<div>Par {{ $post->user->name }}</div>
 		
 		{{-- <h2 class="text-2xl font-normal leading-normal mt-2 mb-2 text-gray-800">Catégories associées</h2>
 		
