@@ -20,6 +20,19 @@
 
 		</p>
 
+		<p>
+			<label for="name" >Rôle</label><br/>
+
+			<select name="roles" class="border">
+				@foreach ($roles as $role)
+					<option value="{{ $role->id }}" {{ isset($user) && $user->roles->contains($role) ? 'selected' : '' }}>{{ $role->name }}</option>
+				@endforeach
+			</select>
+		</p>
+
+
+		
+
 
 		<input type="submit" name="valider" value="Valider" class=" transition ease-in-out rounded bg-slate-400 py-2 px-3 mt-2 hover:bg-slate-300">
 

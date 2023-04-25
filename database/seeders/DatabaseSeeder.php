@@ -31,19 +31,21 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        $superAdmin = User::create([
+        $superAdminPerson = User::create([
             'name' => 'francine',
             'email' => 'francine@yahoo.fr',
             'password' => bcrypt('password'),
         ]);
 
+        $superAdmin= Role::create(['name' => 'superAdmin']);
+        $canAccessSuperAdmin= Permission::create(['name' => 'access superAdmin']);
+        $superAdmin->givePermissionTo($canAccessSuperAdmin);
+
+        $superAdminPerson->assignRole($superAdmin);
+
         $admin= Role::create(['name' => 'admin']);
         $canAccessAdmin= Permission::create(['name' => 'access admin']);
         $admin->givePermissionTo($canAccessAdmin);
-
-        $superAdmin->assignRole($admin);
-
-
 
 
     }

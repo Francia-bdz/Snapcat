@@ -16,8 +16,12 @@
             <tr>
                 <th class="border border-slate-300">Nom</th>
                 <th class="border border-slate-300">Rôle</th>
+
+                @can('access superAdmin')
                 <th class="border border-slate-300">Modifier</th>
                 <th class="border border-slate-300">Supprimer</th>
+                @endcan
+
             </tr>
         </thead>
         <tbody>
@@ -33,7 +37,7 @@
                     {{-- <a href="{{ route('users.show', $user) }}" title="Lire l'article" >{{ $user->roles }}</a> --}}
                 </td>
 
-                @can('access admin')
+                @can('access superAdmin')
 
                 <td class="border border-slate-300">
                     <a href="{{ route('users.edit', $user) }}" title="Modifier le nom de l'utilisateur" >Modifier</a>
@@ -47,6 +51,7 @@
                         <input type="submit" value="x Supprimer" >
                     </form>
                 </td>
+                
                 @endcan
             </tr>
             @endforeach

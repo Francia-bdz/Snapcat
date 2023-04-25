@@ -34,7 +34,8 @@ class UserController extends Controller
 
         $user->update(['name' => $request->input('name')]);
 
-        // $user->syncRoles($request->input('roles'));
+        $user->syncRoles($request->input('roles'));
+        
         return redirect()->route('users.index')->with('success', 'User updated successfully');
     }
 
