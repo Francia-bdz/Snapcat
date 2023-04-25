@@ -37,7 +37,11 @@ class PostController extends Controller
             'content' => 'required',
         ]);
 
-        Post::create($request->all());
+        Post::create([
+            'title' => $request->input('title'),
+            'content' => $request->input('content'), 
+            'user_id' => auth()->user()->id,
+        ] );
 
         return redirect()->route('posts.index')
             ->with('success', 'Post created successfully.');
@@ -51,6 +55,13 @@ class PostController extends Controller
 
     public function edit(Post $post)
     {
+        
+        // Si l'ID de l'utilisateur connecté est différent de l'ID de l'auteur du post alors on redirige vers la page d'accueil 
+        
+        if (auth()->user()->id != $post->user_id ){
+            return to_route('posts.index');
+        }
+
         return view('posts.edit', compact('post'));
     }
 

@@ -21,23 +21,34 @@ class UserController extends Controller
         return view('users.create', compact('roles'));
     }
 
-    public function edit($id)
+    public function edit(User $user)
     {
-        $user = User::find($id);
+        if ($user->hasRole('superAdmin')){
+
         $excludedRoleName = 'superAdmin';
         $roles = Role::where('name', '!=', $excludedRoleName)->get(); 
         return view('users.edit', compact('user', 'roles'));
+
+        } else {
+                
+            return to_route('users.index');
+        }
     }
 
     public function update(Request $request,User $user)
     {
-        $request->validate(['name' => 'required']);
 
-        $user->update(['name' => $request->input('name')]);
 
-        $user->syncRoles($request->input('roles'));
+            $request->validate(['name' => 'required']);
+            
+            $user->update(['name' => $request->input('name')]);
+            
+            $user->syncRoles($request->input('roles'));
+            
+            return redirect()->route('users.index')->with('success', 'User updated successfully');
+            
 
-        return redirect()->route('users.index')->with('success', 'User updated successfully');
+
     }
 
     public function store(Request $request)
