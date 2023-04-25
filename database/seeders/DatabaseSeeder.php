@@ -22,11 +22,13 @@ class DatabaseSeeder extends Seeder
         $writer->givePermissionTo($canWriteAnArticle);
 
 
-        User::factory(10)->create()->each(function ($user) {
-             $user->assignRole('writer');
-        });
+         User::factory()->count(10)->create()->each(function ($user) use ($writer) {
+             $user->assignRole($writer);
+           Post::factory()->count(2)->create(['user_id' => $user->id]);
+         });
 
-        Post::factory(10)->create();
+        // User::factory()->count(10)->create();
+
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',

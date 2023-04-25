@@ -4,7 +4,7 @@
 
     <div class="container mx-auto px-4 ">
 
-		<h1 class="text-4xl font-bold">Tous les articles</h1>
+		<h1 class="text-4xl font-bold">Tous les articles </h1>
 
 		@if(session()->has('success'))
 			<div class="alert alert_success">

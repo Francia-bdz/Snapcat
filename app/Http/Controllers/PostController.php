@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Permission;
 
 class PostController extends Controller
@@ -21,13 +22,16 @@ class PostController extends Controller
         return view('posts.create');
     }
 
-    public function store(Request $request)
+    public function store(Request $request, Post $post)
     {
+        
         $request->validate([
             'title' => 'required',
             'content' => 'required',
         ]);
+        $post->user_id = Auth::user()->id;
 
+        
         Post::create($request->all());
 
         return redirect()->route('posts.index')
@@ -35,7 +39,10 @@ class PostController extends Controller
     }
 
     public function show(Post $post)
+
     {
+
+        
         return view('posts.show', compact('post'));
     }
 

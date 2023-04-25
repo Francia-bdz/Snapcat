@@ -12,7 +12,7 @@
 		<p>
 			<label for="title" >Titre de l'article</label><br/>
 
-			<input type="text" name="title" value="{{ $post->title }}"  id="title" placeholder="Le titre de l'article" class="border">
+			<input type="text" name="title" value="{{ isset($post->title) ? $post->title : old('title') }}"  id="title" placeholder="Le titre de l'article" class="border">
 
 		</p>
 

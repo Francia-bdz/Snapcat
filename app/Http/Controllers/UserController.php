@@ -58,6 +58,13 @@ class UserController extends Controller
         $user->assignRole($request->input('roles'));
         return redirect()->route('users.index')->with('success', 'User created successfully');
     }
+
+    public function show($id){
+        $user = User::find($id);
+        $post = $user->posts;
+        
+        return view('users.show', compact('user'));
+    }
     
     public function destroy($id)
     {
