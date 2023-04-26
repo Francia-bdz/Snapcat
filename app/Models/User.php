@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Post;
+use App\Models\Comment;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
@@ -21,6 +22,11 @@ class User extends Authenticatable
         return $this->hasMany(Post::class);
     }
 
+    public function commentUser()
+    {
+        return $this->hasMany(Comment::class);
+    }
+    
     /**
      * The attributes that are mass assignable.
      *

@@ -23,16 +23,12 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
-        if ($user->hasRole('superAdmin')){
-
+      
         $excludedRoleName = 'superAdmin';
         $roles = Role::where('name', '!=', $excludedRoleName)->get(); 
         return view('users.edit', compact('user', 'roles'));
 
-        } else {
                 
-            return to_route('users.index');
-        }
     }
 
     public function update(Request $request,User $user)
@@ -47,8 +43,6 @@ class UserController extends Controller
             
             return redirect()->route('users.index')->with('success', 'User updated successfully');
             
-
-
     }
 
     public function store(Request $request)
@@ -67,6 +61,7 @@ class UserController extends Controller
         ]);
 
         $user->assignRole($request->input('roles'));
+
         return redirect()->route('users.index')->with('success', 'User created successfully');
     }
 

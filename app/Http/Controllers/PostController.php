@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
@@ -16,8 +17,6 @@ class PostController extends Controller
 
         $excludedUserId = auth()->user()->id;
         $posts = Post::where('user_id', '!=', $excludedUserId)->get(); 
-
-        //$posts= Post::all();
         
         $myPosts = Post::where('user_id', Auth::user()->id)->get();
         
@@ -88,3 +87,5 @@ class PostController extends Controller
     
     
 }
+
+
