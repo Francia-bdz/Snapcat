@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 
@@ -20,9 +21,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home', function () {
-    return view('home');
-})->middleware(['auth'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])
+    ->middleware(['auth'])
+    ->name('home');
 
 Route::resource('posts', PostController::class);
 
