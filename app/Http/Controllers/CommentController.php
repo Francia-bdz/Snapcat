@@ -14,12 +14,14 @@ class CommentController extends Controller
 
         $request->validate([
             'content' => 'required',
+            'parent_id' => '',
         ]);
 
         Comment::create([
             'content' => $request->input('content'),
             'post_id' => $post->id,
             'user_id' => auth()->user()->id,
+            'parent_id' => $request->input('parent_id'),
         ]);
 
         return redirect()->route('posts.show', $post);

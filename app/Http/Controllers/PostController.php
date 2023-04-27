@@ -8,6 +8,8 @@ use App\Models\Comment;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
+use App\Http\Requests\StorePostRequest;
 use Spatie\Permission\Models\Permission;
 
 class PostController extends Controller
@@ -28,13 +30,14 @@ class PostController extends Controller
         return view('posts.create');
     }
 
-    public function store(Request $request, Post $post)
+    public function store(Request $request, Post $post) 
     {
         
         $request->validate([
             'title' => 'required',
             'content' => 'required',
         ]);
+
 
         Post::create([
             'title' => $request->input('title'),

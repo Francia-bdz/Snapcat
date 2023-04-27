@@ -24,11 +24,6 @@
 		{{ session()->get('error') }}
 	</div>
 @endif
-		
-		{{-- <h2 class="text-2xl font-normal leading-normal mt-2 mb-2 text-gray-800">Catégories associées</h2>
-		
-		<ul class="list-disc list-inside">
-		</ul> --}}
 
 	
 	 <h2 class="my-2">Ajouter un commentaire</h2>
@@ -48,18 +43,31 @@
 				
 			@if ($comment->user_id == Auth::user()->id)
 				
-				Moi </li>		
-				
+				<span class="font-medium "> Moi </span> </li>		
 				<form method="POST" action="{{ route('comments.destroy', $comment) }}" >
 					@method('DELETE')
 					@csrf
-					<input type="submit" value="Supprimer mon commentaire" class=" bg-sky-500 hover:bg-sky-400 cursor-pointer mt-2 px-2 py-1 text-white rounded" >
+					<input type="submit" value="Supprimer mon commentaire" class="text-xs bg-sky-500 hover:bg-sky-400 cursor-pointer mt-2 px-2 py-1 text-white rounded" >
 				</form>
-				@else
+
+			@else
+
 				{{ $comment->user->name}}</li>
 
-				@endif
-				
+			@endif
+
+				<div class="ml-7">
+					<h3 class="my-2">Répondre au commentaire</h3>
+					<form method="POST" action="{{ route('comments.store', $post) }}" >
+						@csrf
+						<textarea name="content" class="border" ></textarea>
+
+						<input type="hidden" name="parent_id" value={{$comment->id}}>
+
+						<input type="submit" value="Ajouter" >
+					</form>
+				</div>
+
 			@endforeach
 		</ul> 
 
