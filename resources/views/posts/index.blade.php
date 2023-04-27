@@ -12,6 +12,14 @@
 			</div>
 		@endif
 
+		@if(session()->has('error'))
+			<div class="alert alert_error">
+				{{ session()->get('error') }}
+			</div>
+
+		@endif
+
+		
 	
 		<p class="mt-3 hover:text-gray-500">
 			<!-- Lien pour créer un nouvel article : "posts.create" -->

@@ -11,6 +11,8 @@
                 <a href="{{ route('users.index') }}" class="text-sky-500 hover:text-sky-700 underline underline-offset-4 font-bold"> Voir les utilisateurs </a>
             @endcan
         </div>
+
+        
         
         
         @can('access admin')

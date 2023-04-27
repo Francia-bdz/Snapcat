@@ -28,8 +28,6 @@ class DatabaseSeeder extends Seeder
             Post::factory()->count(2)->create(['user_id' => $user->id]);
          });
 
-
-
         // User::factory()->count(10)->create();
 
 

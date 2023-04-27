@@ -43,22 +43,25 @@
 		<ul class="list-disc list-inside">
 			
 			@foreach($post->comments as $comment)
-						
-			<li>{{ $comment->content }} par {{ $comment->user_id}}</li>
+			
+			<li>{{ $comment->content }} par 
+				
+			@if ($comment->user_id == Auth::user()->id)
+				
+				Moi </li>		
+				
+				<form method="POST" action="{{ route('comments.destroy', $comment) }}" >
+					@method('DELETE')
+					@csrf
+					<input type="submit" value="Supprimer mon commentaire" class=" bg-sky-500 hover:bg-sky-400 cursor-pointer mt-2 px-2 py-1 text-white rounded" >
+				</form>
+				@else
+				{{ $comment->user->name}}</li>
 
-				@if ($comment->user_id == Auth::user()->id)
-					<form method="POST" action="{{ route('comments.destroy', $comment) }}" >
-						@method('DELETE')
-						@csrf
-						<input type="submit" value="Supprimer" >
-					</form>
 				@endif
-
+				
 			@endforeach
 		</ul> 
-
-
-
 
 		<p class="text-l font-normal leading-normal mt-2 mb-2 text-gray-500"><a href="{{ route('posts.index') }}" title="Retourner aux articles" >Retourner aux posts</a></p>
 	</div>
