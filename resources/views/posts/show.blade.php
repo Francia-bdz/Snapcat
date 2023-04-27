@@ -43,9 +43,8 @@
 		<ul class="list-disc list-inside">
 			
 			@foreach($post->comments as $comment)
-			
-			{{ dd($post->comments) }}
-				<li>{{ $comment->content }} par {{ $comment->user_id}}</li>
+						
+			<li>{{ $comment->content }} par {{ $comment->user_id}}</li>
 
 				@if ($comment->user_id == Auth::user()->id)
 					<form method="POST" action="{{ route('comments.destroy', $comment) }}" >
