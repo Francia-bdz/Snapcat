@@ -26,27 +26,28 @@ class CommentController extends Controller
           
     }
 
+    public function index(Comment $comment)
+    {
 
-    // public function update(Request $request, Comment $comment, Post $post)
-    // {
-    //     $request->validate([
-    //         'content' => 'required',
-    //     ]);
 
-    //     $comment->update([
-    //         'content' => $request->input('content'),
-    //     ]);
-
-    //     return redirect()->route('posts.post', $post->id)->with('success', 'Commentaire mis à jour avec succès');
-    // }
-
+    }
 
     public function destroy(Comment $comment, Post $post)
     {
+         if (auth()->user()->id != $comment->user_id ){
+
+         return to_route('posts.show', $comment->post)->with('error', 'Vous n\'avez pas le droit de supprimer ce commentaire');
+
+        } else {
+
         $comment->delete();
 
-        return redirect()->route('posts.post', $post->id)->with('success', 'Commentaire supprimé avec succès');
+        return redirect()->route('posts.show', $comment->post)->with('success', 'Commentaire supprimé avec succès');
+
+         }
     }
+
+
 
 
 

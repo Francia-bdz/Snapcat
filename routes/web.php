@@ -28,6 +28,8 @@ Route::get('/home', [HomeController::class, 'index'])
 
 Route::resource('posts', PostController::class);
 
-Route::post('/comments/{post}', [CommentController::class, 'store'])->name('comments.store')->middleware(['auth']);
+Route::post('/comments/{post}', [CommentController::class, 'store'])->name('comments.store')->middleware(['auth']) ;
+
+Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy')->middleware(['auth']);
 
 Route::resource('users', UserController::class)->middleware(['can:access admin']);
