@@ -39,22 +39,31 @@
 			
 			@foreach($post->comments as $comment)
 			
-			<li>{{ $comment->content }} par 
-				
-			@if ($comment->user_id == Auth::user()->id)
-				
-				<span class="font-medium "> Moi </span> </li>		
-				<form method="POST" action="{{ route('comments.destroy', $comment) }}" >
-					@method('DELETE')
-					@csrf
-					<input type="submit" value="Supprimer mon commentaire" class="text-xs bg-sky-500 hover:bg-sky-400 cursor-pointer mt-2 px-2 py-1 text-white rounded" >
-				</form>
+				@if ($comment->parent_id==NULL)
 
-			@else
+					<li>{{ $comment->content }} par 
+					
+				@if ($comment->user_id == Auth::user()->id)
+					
+					<span class="font-medium "> Moi </span> </li>		
+					<form method="POST" action="{{ route('comments.destroy', $comment) }}" >
+						@method('DELETE')
+						@csrf
+						<input type="submit" value="Supprimer mon commentaire" class="text-xs bg-sky-500 hover:bg-sky-400 cursor-pointer mt-2 px-2 py-1 text-white rounded" >
+					</form>
 
-				{{ $comment->user->name}}</li>
+				@else
 
+					{{ $comment->user->name}}</li>
+
+				@endif
 			@endif
+				
+
+				@foreach($comment->commentChild as $comment)
+
+				<li class="ml-5">Réponse de {{ $comment->user->name }} : {{ $comment->content }} </li>
+				@endforeach
 
 				<div class="ml-7">
 					<h3 class="my-2">Répondre au commentaire</h3>

@@ -31,7 +31,6 @@ class CommentController extends Controller
     public function index(Comment $comment)
     {
 
-
     }
 
     public function destroy(Comment $comment, Post $post)
