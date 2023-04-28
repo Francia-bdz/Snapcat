@@ -3,11 +3,17 @@
 @import 'tailwindcss/utilities';
 
 @layer base {
-    h1 {
-      @apply text-3xl;
 
-    }
-    h2 {
-      @apply text-xl;
-    }
+  html {
+    @apply font-mono;
   }
+
+  h1 {
+    @apply text-3xl;
+
+  }
+  h2 {
+    @apply text-xl;
+  }
+  
+}

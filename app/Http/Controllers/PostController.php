@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Comment;
@@ -88,6 +89,18 @@ class PostController extends Controller
             ->with('success', 'Post deleted successfully');
     }
     
+    public function showLatestPost()
+    {
+        $lastPost = Post::latest()->firstOrFail();
+        $posts = Post::latest()->skip(1)->take(6)->get();
+
+        return view('welcome', ['post' => $lastPost], ['posts' => $posts]);
+    }
+
+    // public function indexWelcome()
+    // {
+    //     return view('welcome', ['posts' => $posts]);
+    // }
     
 }
 
