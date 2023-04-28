@@ -3,17 +3,17 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-8">
-                    <div class="card">
-                        <div class="card-header">{{ __('Connctez-vous') }}</div>
+                    <div class="mx-10">
+                        <div class="text-3xl mb-5 mt-10">{{ __('Connectez-vous') }}</div>
 
                         <div class="card-body">
                             <form method="POST" action="{{ route('login') }}">
                                 @csrf
 
-                                <div class="row mb-3">
+                                <div class="mb-3">
                                     <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Adresse Mail') }}</label>
 
-                                    <div class="col-md-6">
+                                    <div class="">
                                         <input id="email" type="email" class="form-control @error('email') is-invalid @enderror border" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                                         @error('email')
@@ -50,17 +50,11 @@
                                     </div>
                                 </div>
 
-                                <div class="row mb-">
-                                    <div class="ml-8 offset-md-4">
-                                        <button type="submit" class="text-white hover:bg-gray-600 bg-gray-900 p-3 rounded-xl">
+                                <div class="">
+                                    <div class="flex flex-col">
+                                        <button type="submit" class="text-white hover:bg-gray-600 bg-gray-900 p-3 rounded-xl w-fit">
                                             {{ __('Se connecter') }}
                                         </button>
-
-                                        @if (Route::has('password.request'))
-                                            <a class="btn btn-link" href="{{ route('password.request') }}">
-                                                {{ __('Mot de passe oublié?') }}
-                                            </a>
-                                        @endif
                                     </div>
                                 </div>
                             </form>

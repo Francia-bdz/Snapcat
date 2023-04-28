@@ -14,8 +14,8 @@
     <nav class="flex flex-row justify-between items-center text-lg mx-10 mt-5">
         <li class="flex flex-row items-center list-none">
             <div class="flex flex-row items-center mr-8"> 
-                <img src="{{ asset('assets/images/cat.svg') }}" class="mr-1">
-                <p class="font-semibold text-stone-900" >Snapcat</p>
+                <a href="{{ url('/') }}"><img src="{{ asset('assets/images/cat.svg') }}" class="mr-1"></a>
+                <a href="{{ url('/') }}"><p class="font-semibold text-stone-900" >Snapcat</p></a>
             </div>
             <a href="{{ url('/') }}" class=" text-gray-900 hover:text-gray-500 mr-8">Accueil</a>
             <a href="{{ route('posts.index') }}" class=" text-gray-900 hover:text-gray-500 ">Articles</a>
@@ -37,7 +37,7 @@
 
     @yield('content')
 
-    <footer class="relative bottom-0 left-0 right-0 bg-gradient-to-r from-purple-500 to-pink-500 px-44 mt-auto">
+    <footer class="relative bottom-0 left-0 right-0 bg-gradient-to-r from-purple-500 to-pink-500 px-44 mt-auto ">
         <ul class="py-6">
             <li> <a href="" class="text-white">A propos</a> </li>
             <li> <a href="" class="text-white">Contact</a> </li>
