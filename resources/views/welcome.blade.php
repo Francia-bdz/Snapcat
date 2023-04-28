@@ -21,10 +21,11 @@
 
                 @foreach ($posts as $post)
                     <div class="ml-10 flex flex-col  w-96">
-                        <a href=" {{ route('posts.show', $post)}}"><div class=" w-80 h-64 bg-stone-500 "></div></a>    
+                        <a href=" {{ route('posts.show', $post)}}"><div class=" w-80 h-64 bg-stone-900 "></div></a>    
                         
-                        <p class="text-sm">{{ $post->created_at }} - {{ $post->user->name }} </p>
-                        <a href=" {{ route('posts.show', $post)}}"><p class="mb-8 list-none"> <span class="font-semibold"> {{ $post->title }}</span> </p> </a>
+                        <p class="text-sm mt-2">{{ $post->created_at->format('d M Y') }} - {{ $post->user->name }} </p>
+                        
+                        <a href=" {{ route('posts.show', $post)}}"><p class="mt-2 mb-8 list-none"> <span class="font-medium"> {{ $post->title }}</span> </p> </a>
                     </div>
                 @endforeach
             </div>

@@ -17,18 +17,18 @@
                 <a href="{{ url('/') }}"><img src="{{ asset('assets/images/cat.svg') }}" class="mr-1"></a>
                 <a href="{{ url('/') }}"><p class="font-semibold text-stone-900" >Snapcat</p></a>
             </div>
-            <a href="{{ url('/') }}" class=" text-gray-900 hover:text-gray-500 mr-8">Accueil</a>
-            <a href="{{ route('posts.index') }}" class=" text-gray-900 hover:text-gray-500 ">Articles</a>
+            <a href="{{ url('/') }}" class=" text-stone-900 hover:text-stone-500 mr-8">Accueil</a>
+            <a href="{{ route('posts.index') }}" class=" text-stone-900 hover:text-stone-500 ">Articles</a>
         </li>
     @if (Route::has('login'))
         <div class="">
             @auth
-                <a href="{{ url('/home') }}" class="font-semibold text-gray-900 hover:text-gray-500 ">Le hub</a>
+                <a href="{{ url('/home') }}" class=" text-white hover:bg-stone-600 bg-stone-900 p-3 rounded-xl ">Le hub</a>
             @else
-                <a href="{{ route('login') }}" class=" text-gray-900 hover:text-gray-500 mr-4 ">Se connecter</a>
+                <a href="{{ route('login') }}" class=" text-stone-900 hover:text-stone-500 mr-4 ">Se connecter</a>
 
                 @if (Route::has('register'))
-                    <a href="{{ route('register') }}" class=" text-white hover:bg-gray-600 bg-gray-900 p-3 rounded-xl">S'inscrire</a>
+                    <a href="{{ route('register') }}" class=" text-white hover:bg-stone-600 bg-stone-900 p-3 rounded-xl">S'inscrire</a>
                 @endif
             @endauth
         </div>
@@ -37,12 +37,20 @@
 
     @yield('content')
 
-    <footer class="relative bottom-0 left-0 right-0 bg-gradient-to-r from-purple-500 to-pink-500 px-44 mt-auto ">
-        <ul class="py-6">
-            <li> <a href="" class="text-white">A propos</a> </li>
-            <li> <a href="" class="text-white">Contact</a> </li>
-            <li> <a href="" class="text-white">Mentions légales</a> </li>
-        </ul>
+    <footer class="relative bottom-0 left-0 right-0 bg-gradient-to-r from-purple-500 to-pink-500 px-44 mt-auto flex justify-between align-center">
+        <a href="{{ url('/') }}"><img src="{{ asset('assets/images/white-cat.svg') }}" class="mr-1"></a>
+        
+            <ul class="  m-auto">
+                <li class="mb-3"> <a href="" class="text-white ">Articles</a> </li>
+                <li class="mb-3"> <a href="" class="text-white ">Catégories</a> </li>
+                <li> <a href="" class="text-white">Ressources</a> </li>
+            </ul>
+
+            <ul class="  m-auto">
+                <li class="mb-3"> <a href="" class="text-white ">À propos</a> </li>
+                <li class="mb-3"> <a href="" class="text-white ">Contact</a> </li>
+                <li> <a href="" class="text-white">Mentions légales</a> </li>
+            </ul>
 
     </footer>
 </body>

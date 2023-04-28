@@ -2,15 +2,17 @@
 @section("title", $post->title)
 @section("content")
 
-	<div class="container mx-auto px-4">
-		<h1 class="text-6xl font-normal leading-normal ">{{ $post->title }}</h1>
+	<div class="container mt-5 mx-auto px-4">
+		<h1 class="text-5xl font-normal leading-normal text-center ">{{ $post->title }}</h1>
 		
 		
-		<div>{{ $post->content }}</div>
+		<div class="w-9/12 h-64 bg-stone-500 m-auto my-5" ></div>
+
+		<div class="mt-6 text-lg">{{ $post->content }}</div>
 
 
-		<div>Par {{ $post->user->name }}</div>
-
+		<div class="font-bold">Par {{ $post->user->name }}</div>
+		
 		<br/>
 
 		@if(session()->has('success'))

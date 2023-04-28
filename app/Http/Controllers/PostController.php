@@ -53,7 +53,12 @@ class PostController extends Controller
     public function show(Post $post)
 
     {
-        return view('posts.show', compact('post'));
+
+        $model = Post::findOrfail($post->id);
+
+        $createdAt = Carbon::parse($model->created_at)->format('d/m/Y');
+
+        return view('posts.show', compact('post','createdAt'));
     }
 
     public function edit(Post $post)
@@ -93,6 +98,9 @@ class PostController extends Controller
     {
         $lastPost = Post::latest()->firstOrFail();
         $posts = Post::latest()->skip(1)->take(6)->get();
+
+
+
 
         return view('welcome', ['post' => $lastPost], ['posts' => $posts]);
     }
