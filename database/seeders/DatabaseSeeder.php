@@ -37,8 +37,8 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $superAdminPerson = User::create([
-            'name' => 'francine',
-            'email' => 'francine@yahoo.fr',
+            'name' => 'Francine',
+            'email' => 'Francine@example.com',
             'password' => bcrypt('password'),
         ]);
 
