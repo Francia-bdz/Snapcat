@@ -56,5 +56,4 @@
         </tbody>
     </table>
 
-    <a href="{{ route('home') }}" class="grey"> Retour vers la home </a>
 @endsection

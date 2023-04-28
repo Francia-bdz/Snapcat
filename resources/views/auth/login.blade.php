@@ -3,7 +3,6 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-8">
-                    <div class="mx-10">
                         <div class="text-3xl mb-5 mt-10">{{ __('Connectez-vous') }}</div>
 
                         <div class="card-body">
@@ -59,7 +58,6 @@
                                 </div>
                             </form>
                         </div>
-                    </div>
                 </div>
             </div>
         </div>

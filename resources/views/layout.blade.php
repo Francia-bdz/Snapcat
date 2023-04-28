@@ -35,7 +35,9 @@
     @endif
     </nav>
 
-    @yield('content')
+    <div class="mx-10 mt-5">
+        @yield('content')
+    </div>
 
     <footer class="relative bottom-0 left-0 right-0 bg-gradient-to-r from-purple-500 to-pink-500 px-44 mt-auto flex justify-between align-center">
         <a href="{{ url('/') }}"><img src="{{ asset('assets/images/white-cat.svg') }}" class="mr-1"></a>

@@ -89,7 +89,6 @@
 				@endforeach
 			</tbody>
 		</table>
-		<a href="{{ route('home') }}" class="text-sky-500"> Retour vers la home </a>
 
 </div>
 		

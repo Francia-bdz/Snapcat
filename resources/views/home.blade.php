@@ -1,29 +1,24 @@
 @extends('layout')
     @section('content')
 
-    <div class="m-10">
         <div class="p-2">
             <h1 class="font-extrabold text-5xl  "> Coucou {{ Auth::user()->name }} ! Bienvenue sur Snapcat </h1>
             <div class="my-6 p-1">
 
-                <a href="{{ route('posts.create') }}" class=" hover:text-stone-700 underline underline-offset-4 font-bold text-lg"> Écrire un article </a>
+                <a href="{{ route('posts.create') }}" class=" hover:text-stone-700 underline underline-offset-4 font-semibold text-lg"> Écrire un article </a>
 
                 @if (count($myPosts) > 0)
-                    <h3 class="text-xl mt-5">Tous vos articles </h3>
+                    <h3 class="text-xl my-5">Tous vos articles </h3>
                     @foreach ($myPosts as $post)
-                        <p>{{ $post->title }}</p>
+                        <a href="{{ route('posts.show', $post)}}"><p>{{ $post->title }}</p></a>
                     @endforeach
                 @endif
 
-                @can('access admin')
-                    <br/>
-                    <br/>
-                    <a href="{{ route('users.index') }}" class="text-sky-500 hover:text-sky-700 underline underline-offset-4 font-bold"> Voir les utilisateurs </a>
-                @endcan
 
             </div>
     
             @can('access admin')
+            <h3 class="text-xl font-bold "> Gestion des utilisateurs </h3>
             <table class=" mt-3" >
                 <thead>
                     <tr>
@@ -75,6 +70,5 @@
         </form>
 
         </div>
-    </div>
 
     @endsection

@@ -1,7 +1,7 @@
 @extends('layout')
     @section('content')
  
-        <div class="mt-24"> 
+        <div class="mt-16"> 
             <p class="text-center text-xl"> Le blog</p>
             <h3 class="font-semibold text-center text-3xl my-5"> Parce que les chats sont à la mode </h3>
             <p class="text-center text-l"> Les dernières nouvelles sur les litières, les croquettes et tout ce qui peut servir votre petit félin</p>
