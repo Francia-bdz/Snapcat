@@ -34,5 +34,5 @@ Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->nam
 
 Route::resource('users', UserController::class)->middleware(['can:access admin']);
 
-Route::get('/', [PostController::class, 'showLatestPost']);
+Route::get('/', [PostController::class, 'showAndIndexInWelcomePage']);
 //Route::get('/', [PostController::class, 'indexWelcome']);

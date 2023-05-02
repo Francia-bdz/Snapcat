@@ -63,9 +63,7 @@ class PostController extends Controller
 
     public function edit(Post $post)
     {
-        
-        // Si l'ID de l'utilisateur connecté est différent de l'ID de l'auteur du post alors on redirige vers la page d'accueil 
-        
+                
         if (auth()->user()->id != $post->user_id ){
             return to_route('posts.index');
         }
@@ -94,13 +92,10 @@ class PostController extends Controller
             ->with('success', 'Post deleted successfully');
     }
     
-    public function showLatestPost()
+    public function showAndIndexInWelcomePage()
     {
-        $lastPost = Post::latest()->firstOrFail();
-        $posts = Post::latest()->skip(1)->take(6)->get();
-
-
-
+        $lastPost = Post::latest()->with('user')->firstOrFail();
+        $posts = Post::latest()->with('user')->skip(1)->take(6)->get();
 
         return view('welcome', ['post' => $lastPost], ['posts' => $posts]);
     }
