@@ -11,6 +11,7 @@ use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\StorePostRequest;
+use App\Notifications\PostCreated;
 use Spatie\Permission\Models\Permission;
 
 class PostController extends Controller
@@ -45,6 +46,9 @@ class PostController extends Controller
             'content' => $request->input('content'), 
             'user_id' => auth()->user()->id,
         ] );
+
+        $user = User::find(auth()->user()->id);
+        $user->notify(new PostCreated($this));
 
         return redirect()->route('posts.index')
             ->with('success', 'Post created successfully.');

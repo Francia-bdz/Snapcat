@@ -5,7 +5,7 @@
             <h1 class="font-extrabold text-5xl  "> Coucou {{ Auth::user()->name }} ! Bienvenue sur Snapcat </h1>
             <div class="my-6 p-1">
 
-                <a href="{{ route('posts.create') }}" class=" hover:text-stone-700 underline underline-offset-4 font-semibold text-lg"> Écrire un article </a>
+                <a href="{{ route('posts.create') }}" class="  text-white hover:bg-stone-600 bg-stone-900 p-3 rounded-xl mt-6"> Écrire un article </a>
 
                 @if (count($myPosts) > 0)
                     <h3 class="text-xl my-5">Tous vos articles </h3>
