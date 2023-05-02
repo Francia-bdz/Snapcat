@@ -40,24 +40,21 @@ class PostController extends Controller
             'content' => 'required',
         ]);
 
-
         Post::create([
             'title' => $request->input('title'),
             'content' => $request->input('content'), 
             'user_id' => auth()->user()->id,
         ] );
 
-        $user = User::find(auth()->user()->id);
-        $user->notify(new PostCreated($this));
+        // $user = User::find(auth()->user()->id);
+        // $user->notify(new PostCreated($this));
 
         return redirect()->route('posts.index')
             ->with('success', 'Post created successfully.');
     }
 
     public function show(Post $post)
-
     {
-
         $model = Post::findOrfail($post->id);
 
         $createdAt = Carbon::parse($model->created_at)->format('d/m/Y');
@@ -104,10 +101,6 @@ class PostController extends Controller
         return view('welcome', ['post' => $lastPost], ['posts' => $posts]);
     }
 
-    // public function indexWelcome()
-    // {
-    //     return view('welcome', ['posts' => $posts]);
-    // }
     
 }
 

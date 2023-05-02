@@ -36,7 +36,7 @@
 		</form>
 
 
-		<h2 class="text-2xl font-normal leading-normal mt-2 mb-2 text-gray-800">Commentaires</h2>
+		<h2 class="text-2xl font-normal leading-normal mt-2 mb-2 text-gray-800">Commentaires ({{ $post->comments->count()}})</h2>
 		<ul class="list-disc list-inside">
 			
 			@foreach($post->comments as $comment)
@@ -51,7 +51,7 @@
 						<form method="POST" action="{{ route('comments.destroy', $comment) }}" >
 							@method('DELETE')
 							@csrf
-							<input type="submit" value="Supprimer" class="text-xs bg-sky-500 hover:bg-sky-400 cursor-pointer my-1 px-2 py-1 text-white rounded" >
+							<input type="submit" value="Supprimer" class="text-xs bg-stone-950 hover:bg-stone-800 cursor-pointer my-1 px-2 py-1 text-white rounded" >
 						</form>
 
 					@else
@@ -64,20 +64,25 @@
 				
 				@foreach($comment->commentChild as $comment)
 
-					<li class="ml-5 list-none">Réponse de {{ $comment->user->name }} : {{ $comment->content }} </li>
+					<li class="ml-5 list-none">
 
-				@if ($comment->user_id == Auth::user()->id)
+				@if ($comment->user_id == Auth::user()->id) 
+				
+					Ma réponse 
+				
+				@else 
+				
+					Réponse de {{ $comment->user->name }} 
+				
+				@endif : {{ $comment->content }} </li>
+
+				@if ($comment->user_id == Auth::user()->id || Auth::user()->can('access admin'))
 						
-					<span class="font-medium "> Moi </span> </li>		
 					<form method="POST" action="{{ route('comments.destroy', $comment) }}" >
 						@method('DELETE')
 						@csrf
-						<input type="submit" value="Supprimer" class="text-xs bg-sky-500 hover:bg-sky-400 cursor-pointer my-1 px-2 py-1 text-white rounded" >
+						<input type="submit" value="Supprimer" class="text-xs bg-stone-950 hover:bg-stone-800 cursor-pointer my-1 px-2 py-1 text-white rounded" >
 					</form>
-
-				@else
-
-					{{ $comment->user->name}}</li>
 
 				@endif
 

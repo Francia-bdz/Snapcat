@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\Comment;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
 class CommentController extends Controller
 {
@@ -35,7 +36,8 @@ class CommentController extends Controller
 
     public function destroy(Comment $comment, Post $post)
     {
-         if (auth()->user()->id != $comment->user_id ){
+
+         if (auth()->user()->id != $comment->user_id    ){
 
          return to_route('posts.show', $comment->post)->with('error', 'Vous n\'avez pas le droit de supprimer ce commentaire');
 

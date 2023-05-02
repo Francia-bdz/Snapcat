@@ -45,7 +45,6 @@ class DatabaseSeeder extends Seeder
         $superAdmin= Role::create(['name' => 'superAdmin']);
         $canAccessSuperAdmin= Permission::create(['name' => 'access superAdmin']);
         $superAdmin->givePermissionTo($canAccessSuperAdmin);
-
         $superAdminPerson->assignRole($superAdmin);
 
         $admin= Role::create(['name' => 'admin']);
@@ -53,7 +52,11 @@ class DatabaseSeeder extends Seeder
         $admin->givePermissionTo($canAccessAdmin);
         $superAdmin->givePermissionTo($canAccessAdmin);
 
-
+        $member= Role::create(['name' => 'member']);
+        $canAccessMember= Permission::create(['name' => 'access member']);
+        $member->givePermissionTo($canAccessMember);
+        $admin->givePermissionTo($canAccessMember);
+        $superAdmin->givePermissionTo($canAccessMember);
 
     }
 }
