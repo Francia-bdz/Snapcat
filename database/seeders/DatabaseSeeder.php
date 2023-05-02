@@ -58,5 +58,13 @@ class DatabaseSeeder extends Seeder
         $admin->givePermissionTo($canAccessMember);
         $superAdmin->givePermissionTo($canAccessMember);
 
+        Post::create([
+            'title' => "Les chats n'aiment pas le poisson",
+            'content' => 'Triste réalité',
+            'user_id' => $superAdminPerson->id,
+            'created_at' => '2023-05-05 00:00:00',
+        ]);
+
+
     }
 }
