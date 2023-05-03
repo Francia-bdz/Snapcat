@@ -39,6 +39,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Francine',
             'email' => 'Francine@example.com',
             'password' => bcrypt('password'),
+            'email_verified_at' => now(),
         ]);
 
         $superAdmin= Role::create(['name' => 'superAdmin']);
