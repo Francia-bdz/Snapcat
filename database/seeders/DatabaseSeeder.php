@@ -18,8 +18,8 @@ class DatabaseSeeder extends Seeder
     {
 
         $writer= Role::create(['name' => 'writer']);
-        $canWriteAnArticle= Permission::create(['name' => 'access writer']);
-        $writer->givePermissionTo($canWriteAnArticle);
+        $canAccessWriter= Permission::create(['name' => 'access writer']);
+        $writer->givePermissionTo($canAccessWriter);
 
 
          User::factory()->count(10)->create()->each(function ($user) use ($writer) {
@@ -56,6 +56,7 @@ class DatabaseSeeder extends Seeder
         $member->givePermissionTo($canAccessMember);
         $admin->givePermissionTo($canAccessMember);
         $superAdmin->givePermissionTo($canAccessMember);
+
 
         Post::create([
             'title' => "Les chats n'aiment pas le poisson",

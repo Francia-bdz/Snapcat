@@ -45,7 +45,7 @@
             <ul class="  m-auto">
                 <li class="mb-3"> <a href="" class="text-white ">Articles</a> </li>
                 <li class="mb-3"> <a href="" class="text-white ">Catégories</a> </li>
-                <li> <a href="" class="text-white">Ressources</a> </li>
+                <li> <a href="{{ route('search')}}" class="text-white">Recherche</a> </li>
             </ul>
 
             <ul class="  m-auto">
