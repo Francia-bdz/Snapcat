@@ -1,7 +1,7 @@
 @extends('layout')
     @section('content')
 
-    <form method="GET" action="{{ route('search') }}">
+    <form method="GET" action="{{ route('search') }}" autocomplete="off" >
         @csrf
         <input type="text" name="search" placeholder="Recherche...">
         <button type="submit">Rechercher</button>

@@ -103,10 +103,11 @@ class PostController extends Controller
         $posts = Post::query()
             ->where('title', 'LIKE', "%{$search}%")
             ->orWhere('content', 'LIKE', "%{$search}%")
+            //ou si la recherche est égal à " "
+
             // ->orWhere("%{$search}%", '!=', "")
             ->get();
 
-    
         // Return the search view with the resluts compacted
         return view('search', compact('posts'));
     }
