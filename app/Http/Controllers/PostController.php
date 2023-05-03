@@ -57,9 +57,9 @@ class PostController extends Controller
     {
         $model = Post::findOrfail($post->id);
 
-        $createdAt = Carbon::parse($model->created_at)->format('d/m/Y');
+        $created_at = Carbon::parse($model->created_at)->format('d M Y');
 
-        return view('posts.show', compact('post','createdAt'));
+        return view('posts.show', compact('post','created_at'));
     }
 
     public function edit(Post $post)

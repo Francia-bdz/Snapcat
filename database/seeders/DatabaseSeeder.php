@@ -5,7 +5,6 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Post;
 use App\Models\User;
-use App\Models\Comment;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -62,9 +61,8 @@ class DatabaseSeeder extends Seeder
             'title' => "Les chats n'aiment pas le poisson",
             'content' => 'Triste réalité',
             'user_id' => $superAdminPerson->id,
-            'created_at' => '2023-05-05 00:00:00',
+            'created_at' => now(),
         ]);
-
 
     }
 }

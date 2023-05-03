@@ -10,8 +10,7 @@
 
 		<div class="mt-6 text-lg">{{ $post->content }}</div>
 
-
-		<div class="font-bold">Par {{ $post->user->name }}</div>
+		<div class="mt-2"><span class="font-bold">Par {{ $post->user->name }} </span>- le {{ $created_at }} </div>
 		
 		<br/>
 
