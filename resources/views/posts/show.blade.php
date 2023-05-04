@@ -28,10 +28,10 @@
 
 	
 	 <h2 class="my-2">Ajouter un commentaire</h2>
-		<form method="POST" action="{{ route('comments.store', $post) }}" >
+		<form method="POST" action="{{ route('comments.store', $post) }}" class="flex flex-col w-fit" >
 			@csrf
 			<textarea name="content" class="border" ></textarea>
-			<input type="submit" value="Ajouter" >
+			<input type="submit" value="Ajouter" class=" text-white text-xs hover:bg-stone-600 bg-stone-900 rounded w-fit p-1 mt-2">
 		</form>
 
 
