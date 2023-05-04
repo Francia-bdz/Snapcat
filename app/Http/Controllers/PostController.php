@@ -5,11 +5,8 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\Post;
 use App\Models\User;
-use App\Models\Comment;
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\StorePostRequest;
 use App\Notifications\PostCreated;
 use Spatie\Permission\Models\Permission;
@@ -33,12 +30,8 @@ class PostController extends Controller
         return view('posts.create');
     }
 
-    public function store(Request $request, Post $post) 
+    public function store(StorePostRequest $request, Post $post) 
     {
-        $request->validate([
-            'title' => 'required',
-            'content' => 'required',
-        ]);
 
         Post::create([
             'title' => $request->input('title'),
@@ -72,12 +65,8 @@ class PostController extends Controller
         return view('posts.edit', compact('post'));
     }
 
-    public function update(Request $request, Post $post)
+    public function update(StorePostRequest $request, Post $post)
     {
-        $request->validate([
-            'title' => 'required',
-            'content' => 'required',
-        ]);
 
         $post->update($request->all());
 
@@ -95,19 +84,14 @@ class PostController extends Controller
     
 
     public function search(Request $request){
-        // Get the search value from the request
         $search = $request->input('search');
     
-        // Search in the title and body columns from the posts table
         $posts = Post::query()
             ->where('title', 'LIKE', "%{$search}%")
             ->orWhere('content', 'LIKE', "%{$search}%")
-            //ou si la recherche est égal à " "
-
             // ->orWhere("%{$search}%", '!=', "")
             ->get();
 
-        // Return the search view with the resluts compacted
         return view('search', compact('posts'));
     }
 
