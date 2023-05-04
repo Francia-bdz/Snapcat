@@ -66,11 +66,12 @@
 
 		<h2 class="my-2 font-bold">Les articles disponibles sur le site</h2>
 
-		<table class="border-separate border border-slate-400 mt-3" >
+		<table class="border-separate border border-slate-400 my-3" >
 			<thead>
 				<tr>
 					<th class="border border-slate-300">Titre</th>
 					<th class="border border-slate-300">Par</th>
+					<th class="border border-slate-300">Dernière modification</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -84,6 +85,10 @@
 					<td class="border border-slate-300">
 						<!-- Lien pour afficher un Post : "posts.show" -->
 						<a href="{{ route('posts.show', $post) }}" title="Lire l'article" >{{ $post->user->name }}</a>
+					</td>
+					<td class="border border-slate-300">
+						<!-- Lien pour afficher un Post : "posts.show" -->
+						<a href="{{ route('posts.show', $post) }}" title="Lire l'article" >{{ $post->updated_at->format('d M Y - H:m') }}</a>
 					</td>
 				</tr>
 				@endforeach

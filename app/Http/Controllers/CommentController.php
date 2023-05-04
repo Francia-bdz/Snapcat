@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\Comment;
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Role;
 
 class CommentController extends Controller
 {
@@ -29,10 +28,6 @@ class CommentController extends Controller
           
     }
 
-    public function index(Comment $comment)
-    {
-
-    }
 
     public function destroy(Comment $comment, Post $post)
     {

@@ -17,16 +17,6 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
 
-        $writer= Role::create(['name' => 'writer']);
-        $canAccessWriter= Permission::create(['name' => 'access writer']);
-        $writer->givePermissionTo($canAccessWriter);
-
-
-         User::factory()->count(10)->create()->each(function ($user) use ($writer) {
-            $user->assignRole($writer);
-            Post::factory()->count(2)->create(['user_id' => $user->id]);
-         });
-
         // User::factory()->count(10)->create();
 
 
@@ -52,12 +42,24 @@ class DatabaseSeeder extends Seeder
         $admin->givePermissionTo($canAccessAdmin);
         $superAdmin->givePermissionTo($canAccessAdmin);
 
+        $writer= Role::create(['name' => 'writer']);
+        $canAccessWriter= Permission::create(['name' => 'access writer']);
+        $writer->givePermissionTo($canAccessWriter);
+        $admin->givePermissionTo($canAccessWriter);
+        $superAdmin->givePermissionTo($canAccessWriter);
+
+
         $member= Role::create(['name' => 'member']);
         $canAccessMember= Permission::create(['name' => 'access member']);
         $member->givePermissionTo($canAccessMember);
+        $writer->givePermissionTo($canAccessMember);
         $admin->givePermissionTo($canAccessMember);
         $superAdmin->givePermissionTo($canAccessMember);
 
+        User::factory()->count(10)->create()->each(function ($user) use ($writer) {
+            $user->assignRole($writer);
+            Post::factory()->count(2)->create(['user_id' => $user->id]);
+         });
 
         Post::create([
             'title' => "Les chats n'aiment pas le poisson",
