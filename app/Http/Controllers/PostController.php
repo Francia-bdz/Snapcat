@@ -26,7 +26,12 @@ class PostController extends Controller
 
     public function create()
     {  
-        return view('posts.create');
+        if (auth()->user()->cannot('canAccessWriter', Post::class)) {
+
+            return redirect()->route('posts.index')->with('error', 'Vous n\'avez pas les droits pour créer un post');
+
+        }else {
+        return view('posts.create');}
     }
 
     public function store(StorePostRequest $request, Post $post) 

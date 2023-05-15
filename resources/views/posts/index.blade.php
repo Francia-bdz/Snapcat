@@ -20,12 +20,16 @@
 		@endif
 
 		
-	
+		
 		<p class="mt-3 hover:text-gray-500">
-			<!-- Lien pour créer un nouvel article : "posts.create" -->
+			@can('access writer')
 			<a href="{{ route('posts.create') }}" title="Créer un article" >Créer un nouveau post</a>
+			@endcan
 		</p>
 
+
+		
+		@if($myPosts->isNotEmpty())
 		<h2 class="my-2 font-bold">Vos articles</h2>
 		<!-- Le tableau pour lister les articles/posts -->
 		<table class="border-separate border border-slate-400 mt-3" >
@@ -62,7 +66,9 @@
 				@endforeach
 			</tbody>
 		</table>
+		@endif
 
+		
 
 		<h2 class="my-2 font-bold">Les articles disponibles sur le site</h2>
 

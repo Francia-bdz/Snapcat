@@ -19,8 +19,7 @@ use App\Http\Controllers\CommentController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('welcome');});
 
 Route::get('/home', [HomeController::class, 'index'])
     ->middleware(['auth'])

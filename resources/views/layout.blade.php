@@ -53,7 +53,6 @@
                 <li class="mb-3"> <a href="" class="text-white ">Contact</a> </li>
                 <li> <a href="" class="text-white">Mentions légales</a> </li>
             </ul>
-
     </footer>
 </body>
 </html>

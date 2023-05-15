@@ -46,7 +46,7 @@
 					
 					@if ($comment->user_id == Auth::user()->id)
 						
-						<span class="font-medium "> Moi </span> </li>		
+						<span class="font-medium"> Moi </span> </li>		
 						<form method="POST" action="{{ route('comments.destroy', $comment) }}" >
 							@method('DELETE')
 							@csrf
