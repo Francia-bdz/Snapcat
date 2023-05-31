@@ -2,7 +2,7 @@
     @section('content')
 
         <div class="p-2">
-            <h1 class="font-extrabold text-5xl  "> Coucou {{ Auth::user()->name }} ! Bienvenue sur Snapcat </h1>
+            <h1 class="font-extrabold text-5xl  "> Bonjour {{ Auth::user()->name }} ! Bienvenue sur Snapcat </h1>
             <div class="my-6 p-1">
 
                 @can('access writer')
